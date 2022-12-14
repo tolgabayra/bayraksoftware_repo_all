@@ -1,8 +1,27 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { mainAxios } from '../utils/appAxios'
 
 
 export default function Register() {
+  const [fullName, setFullName] = useState("")
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+
+  const submitRegister = () => {
+    mainAxios.post("api/v1/auth/register", {
+      fullName,
+      email,
+      password
+    })
+      .then(() => {
+
+      })
+      .catch(err => {
+        console.log(err);
+      })
+  }
+
   return (
     <div>
       <body className="flex h-screen ">
@@ -13,18 +32,18 @@ export default function Register() {
           <form>
             <div>
               <label className="block mb-2 text-indigo-500" for="username">Fullname</label>
-              <input className="w-full p-2 mb-6 text-indigo-700 border-b-2 border-indigo-500 outline-none focus:bg-gray-300" type="text" name="username" />
+              <input onChange={(e) => setFullName(e.target.value)} className="w-full p-2 mb-6 text-indigo-700 border-b-2 border-indigo-500 outline-none focus:bg-gray-300" type="text" name="username" />
             </div>
             <div>
               <label className="block mb-2 text-indigo-500" for="username">Username</label>
-              <input className="w-full p-2 mb-6 text-indigo-700 border-b-2 border-indigo-500 outline-none focus:bg-gray-300" type="text" name="username" />
+              <input onChange={(e) => setEmail(e.target.value)} className="w-full p-2 mb-6 text-indigo-700 border-b-2 border-indigo-500 outline-none focus:bg-gray-300" type="text" name="username" />
             </div>
             <div>
               <label className="block mb-2 text-indigo-500" for="password">Password</label>
-              <input className="w-full p-2 mb-6 text-indigo-700 border-b-2 border-indigo-500 outline-none focus:bg-gray-300" type="password" name="password" />
+              <input onChange={(e) => setPassword(e.target.value)} className="w-full p-2 mb-6 text-indigo-700 border-b-2 border-indigo-500 outline-none focus:bg-gray-300" type="password" name="password" />
             </div>
             <div>
-              <button className='w-full bg-indigo-700 hover:bg-indigo-800 text-white font-bold py-2 px-4 mb-6 rounded'>Register</button>
+              <button onClick={submitRegister} className='w-full bg-indigo-700 hover:bg-indigo-800 text-white font-bold py-2 px-4 mb-6 rounded'>Register</button>
             </div>
           </form>
           <footer>
