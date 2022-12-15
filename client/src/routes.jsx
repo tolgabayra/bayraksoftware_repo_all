@@ -1,7 +1,8 @@
 import { useRoutes } from "react-router-dom";
 import Dashboard from "./pages/Dashboard";
-import Login from "./pages/Login"
+import Login from "./pages/Login";
 import Register from "./pages/Register";
+import Notfound from "./pages/Notfound";
 
 export default function Routes(){
     return useRoutes([
@@ -16,6 +17,10 @@ export default function Routes(){
         {
             path: "/register",
             element: <Register />
+        },
+        {
+            path: "*",
+            element: <Notfound />
         }
     ])
 }
