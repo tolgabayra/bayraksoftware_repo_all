@@ -41,14 +41,15 @@ export class AuthController {
     public register = async (req: Request, res: Response): Promise<void> => {
         const password = this.helper.HashPassword(req.body.password)
         const userData = {
+            id: req.body.id,
             username: req.body.username,
             email: req.body.email,
             password: password
         }
-        const text = `INSERT INTO tb_users(username, email, password) VALUES ($1,$2,$3)`
+        const text = `INSERT INTO tb_users(id,username, email, password) VALUES ($1,$2,$3,$4)`
         try {
             await pool.query("BEGIN")
-            const newUser = await pool.query(text, [userData.username,userData.email,userData.password])
+            const newUser = await pool.query(text, [userData.id,userData.username,userData.email,userData.password])
             await pool.query("COMMIT")
             res.status(StatusCodes.CREATED).json(newUser)
         }catch (e) {
@@ -56,6 +57,13 @@ export class AuthController {
             console.log(e)
             res.status(StatusCodes.INTERNAL_SERVER_ERROR).json(e)
         }
+    }
+
+
+    public Logout = (req: Request, res: Response) => {
+        res.clearCookie('access_token');
+        res.clearCookie('refresh_token');
+        res.status(StatusCodes.OK).json({"message": "Log out is successfully "})
     }
 
 
