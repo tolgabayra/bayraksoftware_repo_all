@@ -1,0 +1,9 @@
+
+
+# Yapılacaklar
+
+
+- Randevu Takip Sistemi
+- Ciro Giderleri
+- Diyet listesi
+- Sms Veyahut Mail ile bilgilendirme
