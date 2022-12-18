@@ -14,7 +14,7 @@ export class AuthController {
 
         try {
             const userData = await pool.query(text, [email, password])
-            if (userData ! == null){
+            if (userData.rows[0]){
                 const payload = {
                     id: userData.id,
                     email: userData.email
