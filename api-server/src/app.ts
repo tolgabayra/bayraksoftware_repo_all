@@ -5,6 +5,8 @@ import cookieParser from "cookie-parser"
 import helmet from 'helmet';
 const { connectDB } = require("./configs/connnect-db")
 import AuthRoute from "./routes/auth-route";
+import CustomerRoute from "./routes/customer-route";
+import CategoryRoute from "./routes/category-route";
 
 dotenv.config()
 connectDB().then(()=>console.log("DB Connection is Successfully"))
@@ -19,6 +21,8 @@ app.use(helmet())
 
 //Routes
 app.use("/api/v1/auth", AuthRoute)
+app.use("/api/v1/customers", CustomerRoute)
+app.use("/api/v1/categories", CategoryRoute)
 
 app.listen(5000, () => {
     console.log(`⚡️[server]: Server is running at https://localhost:${5000}`);

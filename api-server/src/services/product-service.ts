@@ -1,6 +1,8 @@
+
+
 const { pool } = require("../configs/connnect-db")
 
-export class MeetingService {
+export class ProductService {
 
 
     public create(){
