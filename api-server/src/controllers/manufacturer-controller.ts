@@ -9,7 +9,7 @@ export class ManufacturerController {
 
     public createManufacturer = async (req: Request, res: Response): Promise<void> => {
         try {
-            await this.manufacturerService.create(req.body)
+            await this.manufacturerService.create(req.body, req.body.user_id)
             res.status(StatusCodes.OK).json("Manufacturer created.")
         }catch (e) {
             res.status(StatusCodes.INTERNAL_SERVER_ERROR).json(e)
@@ -27,7 +27,8 @@ export class ManufacturerController {
 
     public updateManufacturer = async (req: Request, res: Response): Promise<void> => {
         try {
-
+            await this.manufacturerService.update(req.params.id, req.body)
+            res.status(StatusCodes.OK).json("Manufacturer has been updated.")
         }catch (e) {
             res.status(StatusCodes.INTERNAL_SERVER_ERROR).json(e)
         }

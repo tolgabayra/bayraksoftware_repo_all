@@ -10,7 +10,8 @@ export class CustomerController {
 
     public createCustomer = async (req: Request, res: Response): Promise<void> => {
         try {
-            const newUser = await this.customerService.create(req.body)
+            const user_id = req.body.user_id
+            const newUser = await this.customerService.create(req.body, user_id)
             console.log(newUser)
             if (newUser){
                 res.status(StatusCodes.CREATED).json("User created.")
