@@ -2,9 +2,9 @@
 const {pool} = require("../configs/connnect-db")
 
 export class CustomerService {
-    public create(data: any){
+    public create(data: any, user_id: any){
         const text = `INSERT INTO tb_customers(firstname,middlename,lastname,phonenumber,user_id) VALUES ($1,$2,$3,$4,$5)`
-        return pool.query(text, [data.firstname, data.middlename, data.lastname, data.phonenumber, data.user_id])
+        return pool.query(text, [data.firstname, data.middlename, data.lastname, data.phonenumber, user_id])
     }
 
     public delete(id: any){

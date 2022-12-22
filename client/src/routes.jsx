@@ -6,6 +6,7 @@ import Notfound from "./pages/Notfound";
 import Dasboardlayout from "./layouts/Dasboardlayout";
 import { Children } from "react";
 import Settings from "./pages/Settings";
+import Customers from "./pages/dashboard/Customers";
 
 export default function Routes(){
     return useRoutes([
@@ -14,6 +15,7 @@ export default function Routes(){
             element: <Dasboardlayout />,
             children: [
                 {path: "", element: <Dashboard />},
+                {path: "customers", element: <Customers />},
                 {path: "settings", element: <Settings />}
             ]
         },
