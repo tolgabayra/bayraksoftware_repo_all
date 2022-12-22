@@ -7,10 +7,10 @@ const  UserSchema = require("../schemas/UserSchema");
 
 const router = express.Router()
 const authController = new AuthController();
-const verifyToken = new VerifyMiddleware();
+const validationMiddleware = new VerifyMiddleware();
 
 router.post("/login", authController.login)
-router.post("/register", verifyToken.verifyValidate(UserSchema),authController.register)
+router.post("/register", validationMiddleware.verifyValidate(UserSchema),authController.register)
 router.post("/logout", authController.Logout)
 
 

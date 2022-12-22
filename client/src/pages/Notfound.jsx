@@ -1,6 +1,8 @@
 import React from 'react'
-
+import { useNavigate } from 'react-router-dom';
 export default function Notfound() {
+  const navigate = useNavigate();
+
   return (
     <div>
       <div class="flex items-center justify-center w-screen h-screen">
@@ -18,10 +20,10 @@ export default function Notfound() {
               <p class="mb-8 text-center text-gray-500 md:text-lg">
                 The page you’re looking for doesn’t exist.
               </p>
-              <a
-                href="#"
+              <button
+                onClick={()=> navigate(-1)}
                 class="px-6 py-2 text-sm font-semibold text-blue-800 bg-blue-100"
-              >Go home</a
+              >Go Back</button
               >
             </div>
 

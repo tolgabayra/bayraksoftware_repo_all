@@ -1,11 +1,15 @@
 import express from "express";
 import {CategoryController} from "../controllers/category-controller";
 import {VerifyMiddleware} from "../middlewares/verify-token";
+const CategorySchema = require("../schemas/CategorySchema");
 
 
 const router = express.Router()
 const categoryController = new CategoryController()
-const verifyToken = new VerifyMiddleware()
+const validationMiddleware = new VerifyMiddleware();
+
+
+
 
 router.get("/:id", categoryController.showCategory)
 router.get("/", categoryController.listCategory)
