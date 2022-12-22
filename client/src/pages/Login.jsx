@@ -35,12 +35,17 @@ export default function Login() {
           isClosable: true,
           position: 'top-right'
         })
+        localStorage.clear()
         setIsLoading(false)
         setTimeout(() => {
           navigate("/dashboard")
           setIsLoading(true)
         }, 3000)
         localStorage.setItem("client_token", res.data.client_token)
+        localStorage.setItem("user_email", res.data.email)
+        localStorage.setItem("user_fullname", res.data.fullname)
+
+
       })
       .catch(err => {
         console.log(err);
