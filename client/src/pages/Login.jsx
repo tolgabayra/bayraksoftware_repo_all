@@ -1,8 +1,8 @@
 import React, { useState, Suspense } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { mainAxios } from '../utils/appAxios'
-import { useToast } from '@chakra-ui/react'
 import Loading from '../partials/Loading'
+import { showNotification } from '@mantine/notifications';
 
 
 
@@ -14,7 +14,6 @@ export default function Login() {
   const [isLoading, setIsLoading] = useState(true);
 
 
-  const toast = useToast()
   const navigate = useNavigate()
 
 
@@ -27,14 +26,13 @@ export default function Login() {
     })
       .then((res) => {
         console.log(res);
-        toast({
-          title: 'Login is successfull.',
-          description: "You are being redirected to the dahsboard",
-          status: 'success',
-          duration: 2000,
-          isClosable: true,
-          position: 'top-right'
+      
+        showNotification({
+          title: 'Authentication Successfull',
+          message: 'You are being redirected to the dahsboard',
+          color:"red"
         })
+
         localStorage.clear()
         setIsLoading(false)
         setTimeout(() => {
@@ -49,14 +47,15 @@ export default function Login() {
       })
       .catch(err => {
         console.log(err);
-        toast({
-          title: 'Login is not successfull !',
-          description: "Please review your indivation.",
-          status: 'error',
-          position: 'top-right',
-          duration: 3000,
-          isClosable: true,
+      
+
+        showNotification({
+          title: 'Authentication Failed',
+          message: 'Please review your indivation.',
+          color: "red"
+          
         })
+
       })
   }
 
