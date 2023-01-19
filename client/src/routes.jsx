@@ -20,6 +20,11 @@ export default function Routes(){
             ]
         },
         {
+            path: "/",
+            element: <Login />
+            
+        },
+        {
             path: "/login",
             element: <Login />
         },
