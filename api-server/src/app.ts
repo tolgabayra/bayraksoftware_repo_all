@@ -12,7 +12,7 @@ import CategoryRoute from "./routes/category-route";
 
 
 dotenv.config()
-connectDB().then(()=>console.log("DB Connection is Successfully"))
+connectDB().then().catch()
 
 const app: Express = express();
 
