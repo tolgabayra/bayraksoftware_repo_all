@@ -14,6 +14,7 @@ export default function Customers() {
       <h2 className='text-xl text-center'>Customers</h2>
       <div className='text-right mb-2'>
         <DashboardCard10 />
+        <p>Table</p>
       </div>
 
 
