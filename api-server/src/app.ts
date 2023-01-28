@@ -29,5 +29,5 @@ app.use("/api/v1/customers", CustomerRoute)
 app.use("/api/v1/categories", CategoryRoute)
 
 app.listen(5000, () => {
-    console.log(`⚡️[server]: Server is running at https://localhost:${5000}`);
-  });
+  console.log(`⚡️[server]: Server is running at https://localhost:${5000}`);
+});
