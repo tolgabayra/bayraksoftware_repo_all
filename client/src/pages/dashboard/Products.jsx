@@ -1,9 +1,10 @@
 import React from 'react'
 import { useState } from 'react'
-import { DatePicker, Table, Radio, Input, Space,Button } from 'antd';
+import { DatePicker, Table, Radio, Input, Space } from 'antd';
 import Highlighter from 'react-highlight-words';
 import { useRef } from 'react';
 import { SearchOutlined } from '@ant-design/icons';
+import { Text, Popover, Modal, Button } from '@mantine/core';
 
 
 
@@ -36,6 +37,12 @@ const rowSelection = {
     }),
 };
 export default function Products() {
+    const [opened, setOpened] = useState(false);
+
+
+
+
+
     const [selectionType, setSelectionType] = useState('checkbox');
     const [searchText, setSearchText] = useState('');
     const [searchedColumn, setSearchedColumn] = useState('');
@@ -171,7 +178,12 @@ export default function Products() {
             title: 'Action',
             dataIndex: '',
             key: 'x',
-            render: () => <div> <a>Delete</a ><a className='pl-4'>Edit</a></div>,
+            render: () => (
+                <div>
+                    <a onClick={() => setOpened(true)}>Delete</a>
+                    <a className='pl-4'>Edit</a>
+                </div>
+            ),
         },
     ];
 
@@ -180,10 +192,16 @@ export default function Products() {
 
     return (
         <div>
+            <Modal size="sm" opened={opened} onClose={() => setOpened(false)} withCloseButton={false}>
+                Are you sure to delete this product ?
+                <div>
+                    <Button variant='outline' color="green" className='mr-1 mt-2 p-3'>Yes</Button>
+                    <Button color="red" variant="outline" className='p-3' onClick={() => setOpened(false)}>No</Button>
+                </div>
+            </Modal>
 
             <h4 className=' text-center text-xl mt-2'>Products</h4>
             <div className='m-12'>
-
                 <Table
                     rowSelection={{
                         type: selectionType,
