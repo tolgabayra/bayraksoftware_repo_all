@@ -7,6 +7,7 @@ import Dasboardlayout from "./layouts/Dasboardlayout";
 import { Children } from "react";
 import Settings from "./pages/Settings";
 import Customers from "./pages/dashboard/Customers";
+import Products from "./pages/dashboard/Products";
 
 export default function Routes(){
     return useRoutes([
@@ -15,6 +16,7 @@ export default function Routes(){
             element: <Dasboardlayout />,
             children: [
                 {path: "", element: <Dashboard />},
+                {path: "products", element: <Products />},
                 {path: "customers", element: <Customers />},
                 {path: "settings", element: <Settings />}
             ]

@@ -1,0 +1,89 @@
+-- public.tb_categories definition
+
+-- Drop table
+
+-- DROP TABLE public.tb_categories;
+
+CREATE TABLE public.tb_categories (
+	id serial4 NOT NULL,
+	name varchar(255) NOT NULL,
+	created_at timestamp NOT NULL DEFAULT now(),
+	CONSTRAINT tb_categories_pkey PRIMARY KEY (id)
+);
+
+
+-- public.tb_manufacturers definition
+
+-- Drop table
+
+-- DROP TABLE public.tb_manufacturers;
+
+CREATE TABLE public.tb_manufacturers (
+	id serial4 NOT NULL,
+	name varchar(255) NOT NULL,
+	phone_number varchar(255) NOT NULL,
+	address varchar(255) NOT NULL,
+	mail varchar(255) NOT NULL,
+	created_at timestamp NOT NULL DEFAULT now(),
+	CONSTRAINT tb_manufacturers_pkey PRIMARY KEY (id)
+);
+
+
+-- public.tb_users definition
+
+-- Drop table
+
+-- DROP TABLE public.tb_users;
+
+CREATE TABLE public.tb_users (
+	id serial4 NOT NULL,
+	username varchar(255) NOT NULL,
+	email varchar(255) NOT NULL,
+	"password" varchar(255) NOT NULL,
+	created_at timestamp NOT NULL DEFAULT now(),
+	CONSTRAINT tb_users_pkey PRIMARY KEY (id)
+);
+
+
+-- public.tb_customers definition
+
+-- Drop table
+
+-- DROP TABLE public.tb_customers;
+
+CREATE TABLE public.tb_customers (
+	id serial4 NOT NULL,
+	first_name varchar(255) NOT NULL,
+	middle_name varchar(255) NOT NULL,
+	last_name varchar(255) NOT NULL,
+	phone_number varchar(255) NULL,
+	mail_adress varchar(255) NULL,
+	city varchar(255) NULL,
+	adress varchar(255) NULL,
+	user_id int4 NOT NULL,
+	created_at timestamp NOT NULL DEFAULT now(),
+	CONSTRAINT tb_customers_pkey PRIMARY KEY (id),
+	CONSTRAINT fk_users FOREIGN KEY (user_id) REFERENCES public.tb_users(id)
+);
+
+
+-- public.tb_products definition
+
+-- Drop table
+
+-- DROP TABLE public.tb_products;
+
+CREATE TABLE public.tb_products (
+	id serial4 NOT NULL,
+	name varchar(255) NOT NULL,
+	description varchar(255) NOT NULL,
+	price numeric(255) NOT NULL,
+	color varchar(255) NOT NULL,
+	manufacturer_id int4 NOT NULL,
+	category_id int4 NOT NULL,
+	created_at timestamp NOT NULL DEFAULT now(),
+	updated_at timestamp NOT NULL DEFAULT now(),
+	CONSTRAINT tb_products_pkey PRIMARY KEY (id),
+	CONSTRAINT fk_categories FOREIGN KEY (category_id) REFERENCES public.tb_categories(id),
+	CONSTRAINT fk_manufacturers FOREIGN KEY (manufacturer_id) REFERENCES public.tb_manufacturers(id)
+);
